@@ -2,18 +2,19 @@
 #define VECTOR
 
 
-class vector {
+class Vector {
     public:
         double x;
         double y;
         double z;
-        bool w;
+        bool w = false;
 
-        vector(double x, double y, double z, bool w){
+        Vector() = default;
+
+        Vector(double x, double y, double z){
             this->x = x;
             this->y = y;
             this->z = z;
-            this->w = w;
         }
 };
 
