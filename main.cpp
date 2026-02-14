@@ -3,9 +3,13 @@
 #include "tuple.h"
 
 int main(){
-    Tuple a = Point(1,2,3);
+ 
+    Tuple a = Vector(1,2,3);
+    Tuple b = Vector(2,3,4);
 
-    std::cout<< a.x << " " << a.y << " " << a.z << " " << a.w << std::endl;
+    Tuple c = cross(b,a);
+    std::cout<< c.x << " " << c.y << " " << c.z << " " << c.w << std::endl;
 
     return 0;
+    
 }
