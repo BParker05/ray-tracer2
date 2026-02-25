@@ -26,19 +26,15 @@ int main(){
     }
     */
 
-    Canvas c = Canvas(10,20);
-    Colour red = Colour(1,0,0);
+    Canvas c = Canvas(5,3);
+    Colour c1 = Colour(1.5, 0, 0);
+    Colour c2 = Colour(0, 0.5, 0);
+    Colour c3 = Colour(-0.5, 0, 1);
 
-    c.writePixel(2,3,red);
-    std::cout << c.pixelAt(2,3).red << " " << c.pixelAt(2,3).green << " " << c.pixelAt(2,3).blue << std::endl;
+    c.writePixel(0,0,c1);
+    c.writePixel(2,1,c2);
+    c.writePixel(4,2,c3);
 
-    for (int i = 0; i < c.pixels.size(); i++) {
-        for (int j = 0; j < c.pixels.at(i).size(); j++) {
-            std::cout << c.pixels.at(j).at(i).red << " " << c.pixels.at(j).at(i).green << " " << c.pixels.at(j).at(i).blue << " " << "|" << " ";
-        }
-        std::cout << std::endl;
-    }
-
-    //std::cout << thing.red << " " << thing.green << " " << thing.blue << std::endl;
+    c.writePPM();
     
 }

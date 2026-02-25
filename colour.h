@@ -1,5 +1,8 @@
 #pragma once
 
+#include <ostream>
+#include <algorithm>
+
 class Colour{
     public:
         float red;
@@ -43,3 +46,7 @@ class Colour{
             return Colour(this->red / a, this->green / a, this->blue / a);
         }
 };
+
+std::ostream& operator << (std::ostream &os, Colour &c) {
+    return (os << std::clamp(c.red,0.0f,255.0f) << " " << std::clamp(c.green*255,0.0f,255.0f) << " " << std::clamp(c.blue*255,0.0f,255.0f) << " ");
+}
