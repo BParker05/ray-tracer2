@@ -30,8 +30,8 @@ int main(){
     Colour c1 = Colour(1.5, 0, 0);
     Colour c2 = Colour(0, 0.5, 0);
     Colour c3 = Colour(-0.5, 0, 1);
-
-    c.writePixel(0,0,c1);
+    
+    c.writePixel(0,0,c1); // problematic method call, see method definition for more
     c.writePixel(2,1,c2);
     c.writePixel(4,2,c3);
 

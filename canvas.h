@@ -17,7 +17,6 @@ class Canvas{
             this->height = height;
 
 
-            // solution for sideways image might be building canvas in opposite order?
             for (int i = 0; i < height; i++){
                 this->pixels.push_back(std::vector<Colour>());
                 for (int j = 0; j < width; j++){
@@ -27,14 +26,14 @@ class Canvas{
         }
 
         void writePixel(int x, int y, Colour c){
-            this->pixels[y-1][x-1] = c;
+            this->pixels[y-1][x-1] = c; //current issue caused by something to do with unsigned integers when this method is called with 0
         }
 
         Colour pixelAt(int x,int y){
             return this->pixels[y-1][x-1];
         }
 
-        void writePPM(){
+        void writePPM(){ // still not working correctly, may be an issue with colour << operator overload
             std::ofstream myFile;
             myFile.open("image.ppm");
             myFile << "P3\n" << this->width << " " << this->height << "\n255\n";
