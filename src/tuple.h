@@ -17,11 +17,11 @@ class Tuple{
             this->w = w;
         }
 
-        Tuple operator+(Tuple a){
+        Tuple operator+(const Tuple &a){
             return Tuple(this->x + a.x, this->y + a.y, this->z + a.z, this->w + a.w);
         }
 
-        Tuple operator-(Tuple a){
+        Tuple operator-(const Tuple &a){
             return Tuple(this->x - a.x, this->y - a.y, this->z - a.z, this->w - a.w);
         }
 
@@ -30,19 +30,19 @@ class Tuple{
         }
 
 
-        Tuple operator*(Tuple a){
+        Tuple operator*(const Tuple &a){
             return Tuple(this->x * a.x, this->y * a.y, this->z * a.z, this->w * a.w);
         }
 
-        Tuple operator*(float a){
+        Tuple operator*(const float &a){
             return Tuple(this->x * a, this->y * a, this->z * a, this->w * a);
         }
 
-        Tuple operator/(Tuple a){
+        Tuple operator/(const Tuple &a){
             return Tuple(this->x / a.x, this->y / a.y, this->z / a.z, this->w / a.w);
         }
 
-        Tuple operator/(float a){
+        Tuple operator/(const float &a){
             return Tuple(this->x / a, this->y / a, this->z / a, this->w / a);
         }
 };

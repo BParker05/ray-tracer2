@@ -1,10 +1,12 @@
 #include <iostream>
+#include <vector>
 
 #include "tuple.h"
 #include "canvas.h"
 #include "colour.h"
 #include "environment.h"
 #include "projectile.h"
+#include "matrix.h"
 
 Projectile tick(Environment env, Projectile proj){
     proj.position = proj.position + proj.velocity;
@@ -12,16 +14,22 @@ Projectile tick(Environment env, Projectile proj){
     return proj;
 };
 
+
+
 int main(){
 
-    Projectile p = Projectile(Point(0,1,0),normalize(Vector(1,1.8,0))*6.625);
-    Environment e = Environment(Vector(0,-0.1,1),Vector(-0.01,0,0));
-    Canvas c = Canvas (450,225);
+    std::vector<std::vector<float>> z = {{1,2,3,4},
+                                        {2,4,4,2},
+                                        {8,6,4,1},
+                                        {0,0,0,1}};
 
-    while(p.position.x <= c.width && p.position.y <= c.height && p.position.x >= 0 && p.position.y >= 0){
-        c.writePixel(p.position.x,c.height - p.position.y,Colour(1,0,0));
-        p = tick(e,p);
-    }
-    c.writePPM();
+    Matrix a = Matrix(z);
+
+    Tuple b = Tuple(1,2,3,1);
+
+    Tuple c = a*b;
+
+    std::cout<< c.x << " " << c.y << " " << c.z << " " << c.w << std::endl;
     
+    return 0; 
 }

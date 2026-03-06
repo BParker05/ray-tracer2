@@ -17,11 +17,11 @@ class Colour{
             this->blue = blue;
         }
 
-        Colour operator+(Colour a){
+        Colour operator+(const Colour &a){
             return Colour(this->red + a.red, this->green + a.green, this->blue + a.blue);
         }
 
-        Colour operator-(Colour a){
+        Colour operator-(const Colour &a){
             return Colour(this->red - a.red, this->green - a.green, this->blue - a.blue);
         }
 
@@ -30,23 +30,23 @@ class Colour{
         }
 
 
-        Colour operator*(Colour a){
+        Colour operator*(const Colour &a){
             return Colour(this->red * a.red, this->green * a.green, this->blue * a.blue);
         }
 
-        Colour operator*(float a){
+        Colour operator*(const float &a){
             return Colour(this->red * a, this->green * a, this->blue * a);
         }
 
-        Colour operator/(Colour a){
+        Colour operator/(const Colour &a){
             return Colour(this->red / a.red, this->green / a.green, this->blue / a.blue);
         }
 
-        Colour operator/(float a){
+        Colour operator/(const float &a){
             return Colour(this->red / a, this->green / a, this->blue / a);
         }
 };
 
-std::ostream& operator << (std::ostream &os, Colour &c) {
+std::ostream& operator << (std::ostream &os, const Colour &c) {
     return (os << std::clamp(static_cast<int>(c.red*255),0,255) << " " << std::clamp(static_cast<int>(c.green*255),0,255) << " " << std::clamp(static_cast<int>(c.blue*255),0,255) << " ");
 }
