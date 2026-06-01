@@ -17,7 +17,7 @@ int main(){
     Tuple rayOrigin = Point(0,0,-5);
     float wallZ = 10;
     float wallSize = 7;
-    float canvasPixels = 200;
+    float canvasPixels = 400;
     float pixelSize = wallSize / canvasPixels;
     float half = wallSize / 2;
 
@@ -25,7 +25,7 @@ int main(){
     Colour red = Colour(1,0,0);
     Sphere s = Sphere();
     s.m = Material();
-    s.m.c = Colour(1,0.2,1);
+    s.m.c = Colour(1,0.41176,0.70588);
     PointLight light = PointLight(Point(-10,10,-10), Colour(1,1,1));
 
     for (int i = 0; i < canvasPixels; i++){
