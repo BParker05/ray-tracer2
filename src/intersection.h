@@ -11,7 +11,7 @@ class Intersection {
 
         Intersection(float t){
             this->t = t;
-            this->object = NULL;
+            //this->object = NULL;
         }
 
         Intersection(float t, Sphere object){

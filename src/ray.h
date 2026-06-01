@@ -70,3 +70,6 @@ Intersection hit(std::vector<Intersection> xs){
 	return tmp;
 }
 
+Tuple reflect(Tuple in, Tuple normal){
+    return in - normal * 2 * dot(in, normal);
+}

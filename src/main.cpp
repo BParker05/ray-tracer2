@@ -9,14 +9,8 @@
 #include "matrix.h"
 #include "ray.h"
 #include "intersection.h"
-
-Projectile tick(Environment env, Projectile proj){
-    proj.position = proj.position + proj.velocity;
-    proj.velocity = proj.velocity + env.gravity + env.wind;
-    return proj;
-};
-
-
+#include "material.h"
+#include "pointLight.h"
 
 int main(){
 
@@ -29,7 +23,10 @@ int main(){
 
     Canvas c = Canvas(canvasPixels, canvasPixels);
     Colour red = Colour(1,0,0);
-    Sphere s = Sphere(0);
+    Sphere s = Sphere();
+    s.m = Material();
+    s.m.c = Colour(1,0.2,1);
+    PointLight light = PointLight(Point(-10,10,-10), Colour(1,1,1));
 
     for (int i = 0; i < canvasPixels; i++){
         float worldY = half - pixelSize * i;
@@ -42,7 +39,11 @@ int main(){
             std::vector<Intersection> xs = intersect(r,s);
 
             if (xs.size() > 0){
-                c.writePixel(j,i,Colour(j/200.0,i/200.0,j/200.0));
+                Tuple p = r.position(xs[0].t);
+                Tuple normal = s.normalAt(p);
+                Tuple eye = -r.direction;
+                Colour pixelColour = lighting(xs[0].object.m, light, p, eye, normal);
+                c.writePixel(j,i,pixelColour);
             } else {
                 c.writePixel(j,i,Colour(0,0,0));
             }
