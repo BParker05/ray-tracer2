@@ -28,26 +28,26 @@ Ray transform(Ray r, Matrix m){
     return Ray(m * r.origin, m * r.direction);
 }
 
-std::vector<Intersection> intersect(Ray r, Sphere s){
-    std::vector<Intersection> tmp;
-    r = transform(r, s.transformation.inverse());
+std::vector<Intersection> intersect(Ray ray, Sphere sphere){
+    std::vector<Intersection> intersections;
+    ray = transform(ray, sphere.transformation.inverse());
 
-    Tuple sphereToRay = r.origin - Point(0,0,0);
+    Tuple sphereToRay = ray.origin - Point(0,0,0);
 
-    float a = dot(r.direction, r.direction);
-    float b = 2 * dot(r.direction, sphereToRay);
+    float a = dot(ray.direction, ray.direction);
+    float b = 2 * dot(ray.direction, sphereToRay);
     float c = dot(sphereToRay, sphereToRay) - 1;
 
     float discriminant = b * b - 4 * a * c;
 
     if (discriminant < 0){
-        return tmp;
+        return intersections;
     }
 
-    tmp.push_back(Intersection((-b - std::sqrt(discriminant)) / (2 * a), s));
-    tmp.push_back(Intersection((-b + std::sqrt(discriminant)) / (2 * a), s));
+    intersections.push_back(Intersection((-b - std::sqrt(discriminant)) / (2 * a), sphere));
+    intersections.push_back(Intersection((-b + std::sqrt(discriminant)) / (2 * a), sphere));
 
-    return tmp;
+    return intersections;
 }
 
 Intersection hit(std::vector<Intersection> xs){

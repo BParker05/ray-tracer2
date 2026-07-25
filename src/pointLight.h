@@ -19,17 +19,17 @@ class PointLight {
         }
 };
 
-Colour lighting(Material m, PointLight light, Tuple point, Tuple eyev, Tuple normalv){
+Colour lighting(Material material, PointLight light, Tuple point, Tuple eyeVector, Tuple normalVector){
     Colour diffuse = Colour(0,0,0);
     Colour specular = Colour(0,0,0);
     Colour ambient = Colour(0,0,0);
-    Colour effectiveColour = m.c * light.intensity;
+    Colour effectiveColour = material.colour * light.intensity;
 
-    Tuple lightv = normalize(light.position - point);
+    Tuple lightVector = normalize(light.position - point);
 
-    ambient = effectiveColour * m.ambient;
+    ambient = effectiveColour * material.ambient;
 
-    float lightDotNormal = dot(lightv, normalv);
+    float lightDotNormal = dot(lightVector, normalVector);
 
     if (lightDotNormal < 0){
 
@@ -37,16 +37,16 @@ Colour lighting(Material m, PointLight light, Tuple point, Tuple eyev, Tuple nor
         Colour specular = Colour(0,0,0);
     } else {
 
-        diffuse = effectiveColour * m.diffuse * lightDotNormal;
+        diffuse = effectiveColour * material.diffuse * lightDotNormal;
 
-        Tuple reflectV = reflect(-lightv, normalv);
-        float reflectDotEye = dot(reflectV, eyev);
+        Tuple reflectVector = reflect(-lightVector, normalVector);
+        float reflectDotEye = dot(reflectVector, eyeVector);
 
         if (reflectDotEye <= 0){
             specular = Colour(0,0,0);
         } else {
-            float factor = std::pow(reflectDotEye, m.shininess);
-            specular = light.intensity * m.specular * factor;
+            float factor = std::pow(reflectDotEye, material.shininess);
+            specular = light.intensity * material.specular * factor;
         }
     }
 

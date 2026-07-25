@@ -9,20 +9,20 @@ class Sphere{
 
         int id;
         Matrix transformation = identityMatrix();
-        Material m;
+        Material material;
 
         Sphere(){
             this->id = std::rand();
-            this->m = Material();
+            this->material = Material();
         }
 
-        Sphere(Material m){
+        Sphere(Material material){
             this->id = std::rand();
-            this->m = m;
+            this->material = material;
         }
 
-        void setTransform(Matrix t){
-            this->transformation = this->transformation * t;
+        void setTransform(Matrix transformMatrix){
+            this->transformation = this->transformation * transformMatrix;
         }
 
         Tuple normalAt(Tuple p){

@@ -8,14 +8,14 @@ class Material {
         float diffuse;
         float specular;
         float shininess;
-        Colour c;
+        Colour colour;
 
         Material(){
             this->ambient = 0.1;
             this->diffuse = 0.9;
             this->specular = 0.9;
             this->shininess = 200;
-            this->c = Colour(1,1,1);
+            this->colour = Colour(1,1,1);
         };
 
         Material(float ambient, float diffuse, float specular, float shininess){
@@ -23,15 +23,15 @@ class Material {
             this->diffuse = diffuse;
             this->specular = specular;
             this->shininess = shininess;
-            this->c = Colour(1,1,1);
+            this->colour = Colour(1,1,1);
         }
 
-        Material(Colour c){
+        Material(Colour colour){
             this->ambient = 0.1;
             this->diffuse = 0.9;
             this->specular = 0.9;
             this->shininess = 200;
-            this->c = c;
+            this->colour = colour;
         }
 
 };
